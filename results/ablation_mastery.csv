@@ -1,0 +1,5 @@
+ablation,removed_component,DDPG,SAC,TD3,note
+A1,Braking-aware desired speed,2/3,"2/2 clean; 1 censored",2/3,"SAC censoring prevents complete 3-seed rate"
+A2,Dynamic warning clearance,3/3,3/3,3/3,"9/9 mastered"
+A3,Terminal relaxation,0/3,2/3,1/3,"3/9 mastered; strongest trainability effect"
+A4,Stage-specific horizon,2/3,2/3,3/3,"7/9 mastered; algorithm-dependent"
