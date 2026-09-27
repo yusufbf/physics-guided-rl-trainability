@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this reproducibility package, please cite the archived release and the associated article."
+title: "Reproducibility package for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning"
+type: software
+authors:
+  - family-names: Bilfaqih
+    given-names: Yusuf
+    orcid: "https://orcid.org/0000-0001-7901-7611"
+  - family-names: Santoso
+    given-names: Ari
+  - family-names: Susila
+    given-names: Joko
+  - family-names: Sahal
+    given-names: Mochammad
+  - family-names: Hidayat
+    given-names: Zulkifli
+  - family-names: Gamayanti
+    given-names: Nurlita
+version: "1.0.0"
+date-released: 2026-09-27
+keywords:
+  - reinforcement learning
+  - autonomous motion planning
+  - physics-guided task formulation
+  - trainability
+  - DDPG
+  - TD3
+  - SAC
+repository-code: "https://github.com/yusufbf/physics-guided-rl-trainability"
+abstract: "Code, checkpoint provenance, audit material, and machine-readable result accounting supporting the associated Robotics and Autonomous Systems manuscript."
