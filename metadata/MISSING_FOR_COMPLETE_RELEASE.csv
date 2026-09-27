@@ -1,0 +1,13 @@
+category,required_item,status,reason
+primary,DDPG-PG MS01-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+primary,DDPG-GF MS01-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+primary,TD3-PG MS01-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+primary,TD3-GF MS01-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+primary,SAC-PG MS01-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+primary,SAC-GF MS02-MS05 raw run metadata/checkpoints,MISSING,not present in current verified workspace
+ablation,A1-A4 DDPG MS01/MS03/MS05 raw run metadata/results,MISSING,not present in current verified workspace
+ablation,A1-A4 SAC MS01/MS03/MS05 raw run metadata/results,MISSING,not present in current verified workspace
+ablation,A1-A4 TD3 MS01/MS03/MS05 raw run metadata/results,MISSING,not present in current verified workspace
+ablation,SAC-A1-MS05 infrastructure failure log and recovery provenance,MISSING,not present in current verified workspace
+evaluation,final-test result files for all paired-qualified policies,MISSING,not present in current verified workspace
+validation,scenario-bank definitions and identifiers,MISSING,not present in current verified workspace
