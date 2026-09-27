@@ -1,0 +1,10 @@
+Prepared: 27 September 2026
+Verified SAC checkpoint audit environment:
+- MATLAB: R2024b (24.2.0.2712019)
+- Platform: PCWIN64
+- Stored agent class: rl.agent.rlSACAgent
+- Stored actor class: rl.function.rlContinuousGaussianActor
+- Action specification: 2 x 1, componentwise [-1, 1]
+- Deployment: UseExplorationPolicy = false
+
+Important: the MATLAB version above is the environment in which the stored checkpoint was audited. It should not be described as the original training environment unless independently confirmed by run metadata.
