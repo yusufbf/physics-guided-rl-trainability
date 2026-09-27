@@ -1,0 +1,14 @@
+# MATLAB generated files
+*.asv
+*.autosave
+slprj/
+codegen/
+
+# OS/editor debris
+.DS_Store
+Thumbs.db
+~$*
+
+# Large raw experiment artifacts should be attached to a release/Zenodo,
+# not committed to normal Git history unless deliberately selected.
+*.mat
