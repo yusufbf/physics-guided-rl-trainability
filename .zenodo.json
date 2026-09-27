@@ -1,0 +1,15 @@
+{
+  "title": "Reproducibility package for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning",
+  "upload_type": "software",
+  "description": "Frozen MATLAB code, checkpoint provenance, audit material, and machine-readable result accounting supporting the associated manuscript. Version 1 assembly is explicitly partial until the missing-run manifest is cleared.",
+  "creators": [
+    {"name": "Bilfaqih, Yusuf", "orcid": "0000-0001-7901-7611"},
+    {"name": "Santoso, Ari"},
+    {"name": "Susila, Joko"},
+    {"name": "Sahal, Mochammad"},
+    {"name": "Hidayat, Zulkifli"},
+    {"name": "Gamayanti, Nurlita"}
+  ],
+  "keywords": ["reinforcement learning", "autonomous motion planning", "physics-guided task formulation", "trainability", "DDPG", "TD3", "SAC"],
+  "access_right": "open"
+}
