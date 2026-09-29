@@ -1,21 +1,9 @@
-# SAC P0 checkpoint audit summary
+# SAC actor and checkpoint audit: scope and correction
 
-Prepared: 27 September 2026
+The original 27 September SAC-GF MS01 checkpoint inspection identified an `rlSACAgent` with a `rlContinuousGaussianActor`, 400–300 hidden units, a tanh layer on the two-unit Gaussian mean branch, softplus on standard deviation, and an action specification of `[-1,1]²`. Repeated deterministic `getAction` calls for fixed observations were finite and identical. The original audit script reported a non-substantive `getAgentOptions` warning and then a report-writing file-identifier error after those observations; it did **not** complete a certification of all SAC training paths.
 
-Audited checkpoint: `SAC_v13_6_Stage10_Block01_SR100.0_SAT000.0.mat`.
+The 28 September source follow-up inspected the installed MATLAB R2024b toolbox source and 22 available SAC scripts. It found the same actor block in all 22 scripts. The toolbox applies an outer tanh to the Gaussian sample. In deterministic deployment, the archived configuration therefore maps pre-mean output `z` to `a_det = tanh(tanh(z))` in goal-frame coordinates, limiting each component's magnitude to `tanh(1) ≈ 0.761594`. With a 0.95 component threshold, deterministic SAC saturation is structurally zero and cannot serve as a discriminating qualification metric. Stage-10 success remains operative.
 
-Verified in MATLAB R2024b (24.2.0.2712019), PCWIN64:
+For stochastic training, the outer tanh is applied to a sample from the actor's actual Gaussian mean and standard deviation. Static inspection found the outer-tanh Jacobian correction in the sampled log-density path; a claim that tanh on the mean **necessarily** corrupts entropy is not supported. This source reading is not a numerical gradient test or proof of exact historical runtime binding. Correcting the bounded-mean actor would define a new experiment whose results cannot be inferred from the current SAC rows.
 
-- stored agent: `rl.agent.rlSACAgent`;
-- stored actor: `rl.function.rlContinuousGaussianActor`;
-- actor hidden backbone: 400 and 300 units;
-- mean branch: two-unit fully connected output followed by tanh;
-- standard-deviation branch: two-unit fully connected output followed by softplus;
-- two-dimensional action bounds: componentwise [-1,1];
-- deployment: `UseExplorationPolicy = false`;
-- Stage-10 metadata: target radius 0.5 m, arrival speed 0.5 m/s, horizon 300, mastery threshold 0.60, maximum saturation rate 0.90, 48 validation scenarios;
-- repeated `getAction` calls for fixed observations were finite, bounded, and identical.
-
-The audit produced one non-substantive warning because `getAgentOptions` was unavailable for the stored agent. A later report-writing `fprintf` file-identifier error occurred only after the substantive checks and did not affect checkpoint inspection.
-
-Scope limitation: this forensic checkpoint verification directly establishes the archived SAC-GF implementation. It does not by itself independently verify a SAC-PG checkpoint.
+This repository does not yet deposit the audited checkpoint, the original MATLAB audit script, or raw MAT results. Do not read this summary as an independent replay of the historical training.

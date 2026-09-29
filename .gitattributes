@@ -1,0 +1,3 @@
+# Keep archived MATLAB source bytes unchanged across operating systems.
+# SHA-256 in metadata/source_manifest.csv refers to these exact files.
+*.m -text

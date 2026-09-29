@@ -1,7 +1,7 @@
 {
-  "title": "Reproducibility package for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning",
+  "title": "Reproducibility companion for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning",
   "upload_type": "software",
-  "description": "Frozen MATLAB code, checkpoint provenance, audit material, and machine-readable result accounting supporting the associated manuscript. Version 1 assembly is explicitly partial until the missing-run manifest is cleared.",
+  "description": "Interim audited package with archived MATLAB source scripts, portable result accounting, and figure reconstruction. This remains a partial release until raw MAT outputs, checkpoints, frozen scenario banks, and end-to-end validation are deposited and verified.",
   "creators": [
     {"name": "Bilfaqih, Yusuf", "orcid": "0000-0001-7901-7611"},
     {"name": "Santoso, Ari"},

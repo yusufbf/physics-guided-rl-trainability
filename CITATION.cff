@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this reproducibility package, please cite the archived release and the associated article."
-title: "Reproducibility package for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning"
+message: "If you use this interim package, cite the exact Git commit; use the archival DOI after a complete tagged release exists."
+title: "Reproducibility companion for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning"
 type: software
 authors:
   - family-names: Bilfaqih
@@ -16,8 +16,6 @@ authors:
     given-names: Zulkifli
   - family-names: Gamayanti
     given-names: Nurlita
-version: "1.0.0"
-date-released: 2026-09-27
 keywords:
   - reinforcement learning
   - autonomous motion planning
@@ -27,4 +25,4 @@ keywords:
   - TD3
   - SAC
 repository-code: "https://github.com/yusufbf/physics-guided-rl-trainability"
-abstract: "Code, checkpoint provenance, audit material, and machine-readable result accounting supporting the associated Robotics and Autonomous Systems manuscript."
+abstract: "Interim audited source and result-accounting companion; raw MAT outputs and complete end-to-end reproduction assets are not yet deposited."
