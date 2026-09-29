@@ -1,32 +1,42 @@
-# Reproducibility Package
+# Physics-guided RL trainability: reproducibility companion
 
-**Article:** Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning  
-**Prepared:** 27 September 2026  
-**Package version:** v1 (partial-evidence assembly)
+This private repository accompanies **“Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning”** (manuscript V14, 28 September 2026). It is an **audited partial release**, not yet a complete archive from which every historical training and final-test result can be rerun exactly.
 
-## Purpose
-This repository is the reproducibility companion to the manuscript and Supplementary Material. It separates frozen source code, stored checkpoints, audit/provenance material, and publication documents.
+## What is included
 
-## Important scope statement
-This v1 repository contains the raw artifacts that were available and verified during package assembly. It is **not yet the complete public release** for all 30 primary PG/GF runs and all A1–A4 ablation runs. The currently verified raw checkpoint set is SAC-GF MS01. Missing run-level artifacts are listed in `metadata/MISSING_FOR_COMPLETE_RELEASE.csv` and must be added before this repository is described as a complete reproduction archive.
+- `code/primary/`: 30 archived MATLAB source scripts for the three algorithms × two formulations × five seeds. Source hashes are in `metadata/source_manifest.csv`. A matching source file is **not proof of the exact bytes executed historically**, because runtime self-hashes were not saved.
+- `code/ablation/`: 36 planned script variants (A1–A4 on MS01, MS03, and MS05). One SAC-A1-MS05 outcome was infrastructure-censored; its source is included, but it is **not** a 36th clean completed result.
+- `results/`: audited, portable run-level summaries and derived paired comparisons. These CSVs were reconstructed from archived outputs; they are not replacements for raw MAT files.
+- `figures/reproduce_figures_v14.m`: MATLAB script producing audit versions of Figures 1–8 from the CSVs. Figures 1, 2, and 4 are schematics. Figure 7(c) uses a different descriptive layout from the manuscript image.
+- `verify_package.py`: lightweight integrity and accounting checks; no MATLAB required.
+- `metadata/`: provenance, environment, run coverage, and remaining release gaps.
 
-## Directory map
-- `code/` — frozen MATLAB source currently available.
-- `checkpoints/sac_gf_ms01/` — stored SAC-GF MS01 curriculum checkpoints (to be deposited as release/archive assets).
-- `audit/` — SAC checkpoint forensic audit script.
-- `results/` — machine-readable summary tables for the reported experiment.
-- `metadata/` — inventory, environment/provenance notes, and completion manifest.
-- `docs/` — manuscript and Supplementary Material for traceability.
-- `figures/` — publication figures.
-  
-## Reproduction logic
-1. Read `metadata/ENVIRONMENT.txt` and the frozen-protocol description in the Supplementary Material.
-2. Inspect the frozen source in `code/` and the serialized checkpoints in the archived release.
-3. Run `audit/SAC_P0_Audit_Checkpoint_v2.m` in MATLAB R2024b or a compatible release to inspect the stored SAC actor and deployment behavior.
-4. Use `results/` to trace aggregate manuscript claims to run-level accounting once the missing primary/ablation artifacts are deposited.
+## Check and reproduce what this package supports
 
-## Publication workflow
-Use this GitHub repository for readable/version-controlled code and metadata. After the missing-artifact manifest is cleared and the final package is audited, create tag `v1.0.0` and archive that tagged release in Zenodo. Cite the Zenodo DOI in the article's Data/Code Availability statement rather than citing only the moving GitHub branch.
+```text
+python verify_package.py
+```
 
-## Integrity and limitations
-No unavailable numerical values have been fabricated. A missing raw artifact is represented as missing rather than reconstructed from an aggregate manuscript value. The infrastructure-censored SAC-A1-MS05 run must remain explicitly censored in any completed release.
+In MATLAB R2024b, open `figures/` and run:
+
+```matlab
+reproduce_figures_v14
+```
+
+The PNGs appear in `figures/output/`. This regenerates **figures from archived summary data**, not the experiment. Do not run the historical training scripts until their output paths, software dependencies, scenario generators, and compute budget have been reviewed in your environment.
+
+## Scope of the reported result
+
+The primary study contains **30 training runs**. Stage-10 qualification was DDPG PG/GF **5/5 vs 1/5**, TD3 **5/5 vs 4/5**, and SAC **3/5 vs 4/5**. Seven seed pairs qualified in both arms; PG used fewer interactions in six of them, with a median reduction of **27.99%** conditional on joint qualification. The selective ablation has **35 completed outcomes and one censored condition**, not 36 clean runs. The result applies to a simplified planar navigation testbed and the archived SAC actor configuration; it is not evidence of universal PG superiority or physical-robot safety.
+
+The GF comparator was frozen **after PG MS01–MS03 screening and before PG MS04–MS05 outcomes**. Do not describe the entire study as prospectively frozen before observing any PG result. For the archived SAC actor, deterministic goal-frame actions are bounded by `tanh(1) ≈ 0.7616` per component because its mean and the toolbox action transform both use tanh. The 0.95 deterministic saturation threshold is therefore structurally unreachable for SAC; success remains the operative qualification signal.
+
+## What remains unavailable here
+
+The raw MAT results, policy checkpoints, exact scenario-bank generators/files, a complete historical runtime manifest, and a full end-to-end retraining verification are **not deposited in this Git tree**. See [`metadata/MISSING_FOR_COMPLETE_RELEASE.csv`](metadata/MISSING_FOR_COMPLETE_RELEASE.csv) and [`metadata/RELEASE_STATUS.md`](metadata/RELEASE_STATUS.md). The archived MAT files exist in the local research archive, but their full public-release selection, integrity packaging, and redistribution have not been completed. The earlier README's checkpoint and `docs/` directory map described planned deposits, not files actually present; this README reflects the current tree.
+
+Do not call this package a complete reproduction archive, create a final `v1.0.0` tag, or cite a Zenodo DOI until those release gates are resolved. Cite the exact Git commit when using this interim package.
+
+## Provenance
+
+The numerical tables were audited against archived MAT outputs; the audit did **not** retrain agents. See [`metadata/PROVENANCE.md`](metadata/PROVENANCE.md), [`metadata/DATA_DICTIONARY.md`](metadata/DATA_DICTIONARY.md), and [`audit/SAC_P0_AUDIT_SUMMARY.md`](audit/SAC_P0_AUDIT_SUMMARY.md) for evidence boundaries.
