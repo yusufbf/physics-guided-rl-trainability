@@ -1,7 +1,8 @@
-# MATLAB figure reproduction
+# MATLAB figure reconstruction
 
-Open this directory in MATLAB R2024b and run `reproduce_figures_v14`. The script reads the portable CSVs in `../results/` and writes `output/Figure_01_audit.png` through `Figure_08_audit.png`. No Reinforcement Learning Toolbox is needed for **plotting**; the archived training scripts have separate requirements.
+In MATLAB R2024b, open this directory and run `reproduce_figures_v14`. The script reads the audited CSVs in `../results/` and exports Figures **2, 3, 5, 6, 7, and 8** to `output/` as PNG and TIF at 600 dpi plus vector PDF and EPS. Figures **1 and 4 are intentionally not generated**: use the diagrams embedded in the manuscript, which are the publication artwork.
 
-Figures 3 and 5–8 are derived from rules and audited result summaries. Figures 1, 2, and 4 are schematic audit renditions; the manuscript's embedded Figure 1 and 4 are the preferred publication diagrams. Figure 2 obstacle locations are illustrative. Figure 7(c) presents TD3/SAC clearance rows from the CSV and is not a pixel-identical reproduction of the manuscript's selected prose. The plotted behavior metrics use successful-episode means where route completion is required.
+This is reconstruction from archived formulas and summary data, not training or policy re-evaluation. Figure 2 uses illustrative obstacle geometry, not a frozen evaluation scenario. Figure 7(c) is a descriptive text layout and need not be pixel-identical to the manuscript image. The script hides axes toolbar icons before export. The raw MAT and frozen banks are in `../raw_evidence/` for audit of the underlying reported results.
 
-The MATLAB program was executed by the researcher on 29 September 2026 and the resulting eight PNGs were visually inspected. The copies in this Git tree should still be run from a fresh checkout as a release gate. Do not confuse successful figure rendering with re-execution of training or final-test rollouts.
+The script was run from a separate staged copy in MATLAB R2024b on 4 October 2026. All six expected figure numbers produced all four formats, with 600-dpi PNG/TIF metadata; Figure 7 was visually inspected for toolbar artifacts. This is a staging-copy check, not a network clone of the eventual public version.
+

@@ -1,7 +1,7 @@
 function reproduce_figures_v14()
 % Audit reproduction of Figures 1-8 from the V14 manuscript.
 % Uses archived CSV summaries, not retraining or new policy evaluation.
-% MATLAB R2024b; no add-on toolbox required. Run from figures/.
+% MATLAB R2024b; no add-on toolbox required.
 root = fileparts(mfilename('fullpath'));
 data = fullfile(root,'..','results'); out = fullfile(root,'output');
 if ~isfolder(out), mkdir(out); end
@@ -12,20 +12,10 @@ B = readtable(fullfile(data,'paired_ablation_recomputed.csv'),'TextType','string
 M = readtable(fullfile(data,'figure7_metrics.csv'),'TextType','string');
 algs = ["DDPG","TD3","SAC"]; arms = ["PG","GF"];
 assert(height(P)==30 && height(Q)==7 && height(A)==36 && height(B)==25);
-assert(isequal(sum(str2double(string(P.highest_mastered(P.arm=="PG")))==10),13));
-assert(isequal(sum(str2double(string(P.highest_mastered(P.arm=="GF")))==10),9));
+assert(isequal(sum(P.highest_mastered(P.arm=="PG")==10),13));
+assert(isequal(sum(P.highest_mastered(P.arm=="GF")==10),9));
 
-% Figure 1: conceptual diagram. Its contents are a schematic, not measured data.
-f=figure('Color','w','Position',[80 80 1250 530]); ax=axes(f,'Position',[0 0 1 1]);axis(ax,'off');
-boxtext(.02,.34,.20,.32,"Physical/mission knowledge"+newline+"speed, obstacles, goal, stages",[.87 .92 .97]);
-boxtext(.28,.34,.24,.32,"Task formulation"+newline+"PG: four physical rules"+newline+"GF: fixed counterparts",[.83 .91 .98]);
-boxtext(.58,.34,.17,.32,"Shared plant and interface"+newline+"DDPG | TD3 | SAC",[.91 .94 .96]);
-boxtext(.81,.52,.17,.17,"Trainability"+newline+"mastery; interactions",[.88 .95 .88]);
-boxtext(.81,.27,.17,.17,"Conditional deployment"+newline+"success; behavior",[.96 .92 .82]);
-annotation(f,'arrow',[.22 .28],[.5 .5]);annotation(f,'arrow',[.52 .58],[.5 .5]);
-annotation(f,'arrow',[.75 .81],[.52 .60]);annotation(f,'arrow',[.75 .81],[.47 .35]);
-annotation(f,'textbox',[.02 .78 .95 .12],'String','Figure 1 — study architecture (schematic; PG/GF comparison)','EdgeColor','none','FontSize',17,'FontWeight','bold');
-savefig(f,out,1);close(f);
+% Figures 1 and 4 are the publication diagrams embedded in the manuscript.
 
 % Figure 2: illustrative geometry; obstacles are schematic, not bank members.
 f=figure('Color','w','Position',[80 80 1200 530]);t=tiledlayout(f,1,2,'Padding','compact');
@@ -48,27 +38,24 @@ savefig(f,out,2);close(f);
 % Figure 3: four frozen task rules. Values are the historical configuration.
 f=figure('Color','w','Position',[80 80 1200 750]);t=tiledlayout(f,2,2,'Padding','compact');
 ax=nexttile(t);d=linspace(0,4,400);pg=min(2,sqrt(2*max(d-.5,0)));
-plot(ax,d,pg,'LineWidth',2);hold(ax,'on');yline(ax,2,'--');grid(ax,'on');
-xlabel(ax,'Goal distance (m)');ylabel(ax,'Reference speed (m/s)');title(ax,'(a) Braking-aware speed');legend(ax,'PG','GF');
-ax=nexttile(t);v=linspace(0,2,400);plot(ax,v,min(2.5,.5+v.^2/2),'LineWidth',2);hold(ax,'on');yline(ax,.5,'--');grid(ax,'on');
-xlabel(ax,'Closing speed (m/s)');ylabel(ax,'Warning clearance (m)');title(ax,'(b) Dynamic warning');legend(ax,'PG','GF');
+pgLine=plot(ax,d,pg,'Color',[0 .447 .741],'LineWidth',2);hold(ax,'on');
+gfLine=plot(ax,d,2*ones(size(d)),'--','Color',[.75 .25 .12],'LineWidth',2);grid(ax,'on');ylim(ax,[-.12 2.18]);
+xlabel(ax,'Goal distance (m)');ylabel(ax,'Reference speed (m/s)');title(ax,'(a) Braking-aware speed');legend(ax,[pgLine gfLine],{'PG','GF'});
+ax=nexttile(t);v=linspace(0,2,400);
+pgLine=plot(ax,v,min(2.5,.5+v.^2/2),'Color',[0 .447 .741],'LineWidth',2);hold(ax,'on');
+gfLine=plot(ax,v,.5*ones(size(v)),'--','Color',[.75 .25 .12],'LineWidth',2);grid(ax,'on');ylim(ax,[.35 2.65]);
+xlabel(ax,'Closing speed (m/s)');ylabel(ax,'Warning clearance (m)');title(ax,'(b) Dynamic warning');legend(ax,[pgLine gfLine],{'PG','GF'});
 s=1:10;r=[1.5 1 .75 .75 1 .5 .5 .5 .5 .5];h=[100 120 150 180 180 300 300 300 300 300];
-ax=nexttile(t);plot(ax,s,r,'-o',s,r,'--s','LineWidth',1.6);hold(ax,'on');yline(ax,.5,':');grid(ax,'on');
-xlabel(ax,'Stage');ylabel(ax,'Radius (m) / speed limit (m/s)');title(ax,'(c) Terminal curriculum');legend(ax,'Radius','Arrival speed','GF');
-ax=nexttile(t);plot(ax,s,h,'-o','LineWidth',1.6);hold(ax,'on');yline(ax,300,'--');grid(ax,'on');
-xlabel(ax,'Stage');ylabel(ax,'Episode horizon (steps)');title(ax,'(d) Stage horizon');legend(ax,'PG','GF');
+ax=nexttile(t);pgRadius=plot(ax,s,r,'-o','LineWidth',1.6);hold(ax,'on');
+pgSpeed=plot(ax,s,r,'--s','LineWidth',1.6);
+gfLine=plot(ax,s,.5*ones(size(s)),':','Color',[.35 .15 .15],'LineWidth',2.2);grid(ax,'on');ylim(ax,[.35 1.65]);
+xlabel(ax,'Stage');ylabel(ax,'Radius (m) / speed limit (m/s)');title(ax,'(c) Terminal curriculum');legend(ax,[pgRadius pgSpeed gfLine],{'Radius','Arrival speed','GF'});
+ax=nexttile(t);pgLine=plot(ax,s,h,'-o','LineWidth',1.6);hold(ax,'on');
+gfLine=plot(ax,s,300*ones(size(s)),'--','Color',[.75 .25 .12],'LineWidth',2);grid(ax,'on');ylim(ax,[85 315]);
+xlabel(ax,'Stage');ylabel(ax,'Episode horizon (steps)');title(ax,'(d) Stage horizon');legend(ax,[pgLine gfLine],{'PG','GF'});
 savefig(f,out,3);close(f);
 
-% Figure 4: protocol chronology. The comparator freeze followed PG MS01-03.
-f=figure('Color','w','Position',[80 80 1250 500]);axes(f,'Position',[0 0 1 1]);axis off;
-boxtext(.03,.42,.20,.25,"PG MS01–MS03"+newline+"screening observed",[.83 .91 .98]);
-boxtext(.28,.42,.20,.25,"Freeze GF comparator"+newline+"and evaluation rules",[.97 .91 .78]);
-boxtext(.53,.42,.20,.25,"PG MS04–MS05"+newline+"then GF MS01–MS05",[.83 .91 .98]);
-boxtext(.78,.42,.19,.25,"30 training runs"+newline+"qualification",[.88 .95 .88]);
-for x=[.23 .48 .73],annotation(f,'arrow',[x x+.05],[.54 .54]);end
-annotation(f,'textbox',[.03 .82 .94 .1],'String','Figure 4 — paired protocol and comparator freeze (schematic)','EdgeColor','none','FontSize',17,'FontWeight','bold');
-annotation(f,'textbox',[.19 .15 .65 .12],'String','Only qualified policies enter the common 100-scenario nominal final test. Failed training runs remain failures.','EdgeColor','none','HorizontalAlignment','center','FontSize',12);
-savefig(f,out,4);close(f);
+% Figure 4 is intentionally not redrawn here.
 
 % Figure 5: exact seed-level mastery status from audited run ledger.
 f=figure('Color','w','Position',[80 80 1150 580]);ax=axes(f);hold(ax,'on');
@@ -78,7 +65,7 @@ for i=1:3
   k=k+1;labels(k)=algs(i)+" "+arms(j);
   for seed=1:5
    row=P(P.algorithm==algs(i)&P.arm==arms(j)&P.seed==seed,:);
-   assert(height(row)==1);pass=str2double(string(row.highest_mastered))==10;
+   assert(height(row)==1);pass=row.highest_mastered==10;
    if pass,c=[.19 .48 .75];else,c=[.88 .89 .90];end
    rectangle(ax,'Position',[seed-.43,6-k+.55,.86,.8],'FaceColor',c,'EdgeColor',[.55 .55 .55]);
    if pass,sym='✓';else,sym='×';end
@@ -108,8 +95,8 @@ legend(ax,[hPG hGF],{'PG','GF'},'Location','southeast');
 ax=nexttile(t);axis(ax,'off');
 text(ax,.05,.82,'(b) Nonqualified runs','FontWeight','bold','Units','normalized');
 for i=1:3
- pg=sum(P.algorithm==algs(i)&P.arm=="PG"&str2double(string(P.highest_mastered))<10);
- gf=sum(P.algorithm==algs(i)&P.arm=="GF"&str2double(string(P.highest_mastered))<10);
+ pg=sum(P.algorithm==algs(i)&P.arm=="PG"&P.highest_mastered<10);
+ gf=sum(P.algorithm==algs(i)&P.arm=="GF"&P.highest_mastered<10);
  text(ax,.05,.72-(i-1)*.23,sprintf('%s: PG %d/5 | GF %d/5',algs(i),pg,gf),'Units','normalized','FontSize',12);
 end
 savefig(f,out,6);close(f);
@@ -158,7 +145,7 @@ for i=1:4
  for j=1:3
   rows=A(A.arm==abls(i)&A.algorithm==algs(j),:);
   available(i,j)=sum(~contains(lower(rows.status),"censor"));
-  counts(i,j)=sum(str2double(string(rows.highest_mastered))==10 & ~contains(lower(rows.status),"censor"));
+  counts(i,j)=sum(rows.highest_mastered==10 & ~contains(lower(rows.status),"censor"));
   text(ax,j,5-i,sprintf('%d/%d',counts(i,j),available(i,j)),'HorizontalAlignment','center','FontSize',13);
  end
 end
@@ -175,7 +162,7 @@ xlabel(ax,'Interaction-cost change (%)');legend(ax,'Median signed','Median absol
 title(ax,'(b) Clean paired-mastered comparisons');grid(ax,'on');
 savefig(f,out,8);close(f);
 
-fprintf('Created Figure_01 through Figure_08 PNG files in %s\n',out);
+fprintf('Created Figures 02, 03, 05–08 in PNG, TIF, PDF, and EPS in %s\n',out);
 end
 
 function boxtext(x,y,w,h,str,color)
@@ -188,5 +175,16 @@ assert(height(row)==1 && ismember(name,string(T.Properties.VariableNames)));
 val=row.(char(name));
 end
 function savefig(f,out,n)
-exportgraphics(f,fullfile(out,sprintf('Figure_%02d_audit.png',n)),'Resolution',220);
+f.ToolBar = 'none';
+f.MenuBar = 'none';
+axesList = findall(f,'Type','axes');
+for k=1:numel(axesList)
+    axesList(k).Toolbar.Visible = 'off';
 end
+stem=fullfile(out,sprintf('Figure_%02d_audit',n));
+exportgraphics(f,[stem '.png'],'Resolution',600);
+exportgraphics(f,[stem '.tif'],'Resolution',600);
+exportgraphics(f,[stem '.pdf'],'ContentType','vector');
+exportgraphics(f,[stem '.eps'],'ContentType','vector');
+end
+
