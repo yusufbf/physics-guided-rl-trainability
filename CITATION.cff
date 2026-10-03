@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this interim package, cite the exact Git commit; use the archival DOI after a complete tagged release exists."
+message: "Cite the version-pinned public archive or its archival DOI when available."
 title: "Reproducibility companion for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning"
 type: software
 authors:
@@ -25,4 +25,4 @@ keywords:
   - TD3
   - SAC
 repository-code: "https://github.com/yusufbf/physics-guided-rl-trainability"
-abstract: "Interim audited source and result-accounting companion; raw MAT outputs and complete end-to-end reproduction assets are not yet deposited."
+abstract: "Audited code, run-level results, raw MAT evidence, frozen scenario banks, selected checkpoints, and verification scripts for the associated manuscript. Historical executed-source self-hashes and an end-to-end retraining claim are not available."
