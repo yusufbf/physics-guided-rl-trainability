@@ -1,0 +1,8 @@
+id
+start
+target
+obstacles
+obstacleCount
+targetRadius
+arrivalSpeed
+maxSteps
