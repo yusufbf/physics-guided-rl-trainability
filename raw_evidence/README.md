@@ -10,4 +10,5 @@ The independent MATLAB wrapper in `scenario_bank/regenerate_scenario_bank_v136.m
 
 **Open release checks:** Audit redistribution rights and any sensitive content; run an independent network checkout/build and document software dependencies. Historical per-run executed-source self-hashes were not recorded and must remain a stated provenance limit. No end-to-end training rerun has been verified by this staging step.
 
-This candidate can be staged on a private review branch, but do not describe the manuscript's public-data release gate as closed until public deposition and a stable citation are verified. The existing GitHub repository `yusufbf/physics-guided-rl-trainability` remains private and explicitly labels its main branch as an audited partial release.
+This candidate is now on the repository's private `main` branch. Do not describe the manuscript's public-data release gate as closed until public access and a stable citation are verified. The repository is `yusufbf/physics-guided-rl-trainability`.
+

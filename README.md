@@ -1,6 +1,6 @@
 # Physics-guided RL trainability: reproducibility companion
 
-This is the private **V16 evidence-release candidate** for “Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning.” It is under review and is **not yet the manuscript's public archival citation**. The `main` branch previously contained a V14-aligned audited partial release; this branch adds the archived raw evidence.
+This private repository contains a **V16 evidence-release candidate** for “Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning.” The raw evidence is now on `main`, but the repository is **not yet the manuscript's public archival citation**. Public visibility and a stable citation still need verification.
 
 ## Contents
 
