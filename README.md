@@ -1,6 +1,6 @@
 # Physics-guided RL trainability: reproducibility companion
 
-This private repository contains a **V16 evidence-release candidate** for “Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning.” The raw evidence is now on `main`, but the repository is **not yet the manuscript's public archival citation**. Public visibility and a stable citation still need verification.
+This public repository contains a **V16 evidence archive** for “Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning.” The raw evidence is on `main` and can be cited by an exact commit permalink. A Zenodo DOI has not yet been issued.
 
 ## Contents
 
@@ -15,9 +15,9 @@ This private repository contains a **V16 evidence-release candidate** for “Phy
 
 Run `python verify_package.py` and `python raw_evidence/verify_raw_release.py` from a checkout of this branch. The raw-evidence verifier checks every staged file's size and SHA-256, counts and manifest uniqueness, plus the MATLAB bank-verification reports. Its success checks package integrity, not historical re-execution of training or deployment.
 
-## Evidence limits before public release
+## Evidence limits and archival status
 
-The raw test and validation banks are included; cross-run identity and independent regeneration from the archived sampling rules, saved configuration, and seeds have been checked. Historical per-run executed-source self-hashes were not recorded; archived source equality cannot prove the exact bytes run historically. No end-to-end training rerun is claimed. Review data redistribution, license choice, an independent network checkout, MATLAB/toolbox compatibility, and figure correspondence before publicizing or issuing an archival DOI. See `metadata/RELEASE_STATUS.md` and `raw_evidence/README.md`.
+The raw test and validation banks are included; cross-run identity and independent regeneration from the archived sampling rules, saved configuration, and seeds have been checked. Historical per-run executed-source self-hashes were not recorded; archived source equality cannot prove the exact bytes run historically. No end-to-end training rerun is claimed. The authors reviewed public sharing. An independent network checkout, MATLAB/toolbox compatibility, and figure correspondence remain recommended release checks before issuing an archival DOI. See `metadata/RELEASE_STATUS.md` and `raw_evidence/README.md`.
 
 The GF comparator was frozen after PG MS01–MS03 screening and before PG MS04–MS05 outcomes. Primary qualification counts are DDPG PG/GF 5/5 vs 1/5, TD3 5/5 vs 4/5, SAC 3/5 vs 4/5. The 27.99% median interaction reduction is conditional on seven jointly qualified seed pairs. Do not infer universal PG superiority or physical-robot safety from this simplified planar testbed.
 
