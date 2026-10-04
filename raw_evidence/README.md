@@ -1,4 +1,4 @@
-# V16 raw-evidence release candidate
+# V16 raw-evidence archive
 
 This directory stages copies of the historical MAT evidence referenced by the audited primary and ablation ledgers. The local research archive was read, not changed. `raw_mat_manifest.csv` maps each copied file to its cohort, run, source path, ledger hash, and recorded scenario/configuration identifiers. `assembly_report.json` gives counts and copy/hash results.
 
@@ -10,5 +10,5 @@ The independent MATLAB wrapper in `scenario_bank/regenerate_scenario_bank_v136.m
 
 **Open release checks:** Audit redistribution rights and any sensitive content; run an independent network checkout/build and document software dependencies. Historical per-run executed-source self-hashes were not recorded and must remain a stated provenance limit. No end-to-end training rerun has been verified by this staging step.
 
-This candidate is now on the repository's private `main` branch. Do not describe the manuscript's public-data release gate as closed until public access and a stable citation are verified. The repository is `yusufbf/physics-guided-rl-trainability`.
+This archive is on the repository's public `main` branch. Cite an exact commit permalink for the version used; a Zenodo DOI should be cited only after the corresponding record is published and verified. The repository is `yusufbf/physics-guided-rl-trainability`.
 
