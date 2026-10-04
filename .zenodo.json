@@ -1,15 +1,36 @@
 {
   "title": "Reproducibility companion for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning",
   "upload_type": "software",
-  "description": "Interim audited package with archived MATLAB source scripts, portable result accounting, and figure reconstruction. This remains a partial release until raw MAT outputs, checkpoints, frozen scenario banks, and end-to-end validation are deposited and verified.",
+  "description": "Audited data and code archive for the associated autonomous-motion-planning manuscript. Includes 65 raw training-stat MAT files, 47 executed 100-scenario final-test MAT files, 47 selected Stage-10 checkpoints, frozen final and validation scenario banks, run-level ledgers, and verification scripts. Independent regeneration matched all 21,172 recorded scenarios. One historical SAC-A1-MS05 outcome is infrastructure-censored. Historical per-run executed-source self-hashes were not recorded, and end-to-end retraining is not claimed.",
   "creators": [
-    {"name": "Bilfaqih, Yusuf", "orcid": "0000-0001-7901-7611"},
-    {"name": "Santoso, Ari"},
-    {"name": "Susila, Joko"},
-    {"name": "Sahal, Mochammad"},
-    {"name": "Hidayat, Zulkifli"},
-    {"name": "Gamayanti, Nurlita"}
+    {
+      "name": "Bilfaqih, Yusuf",
+      "orcid": "0000-0001-7901-7611"
+    },
+    {
+      "name": "Santoso, Ari"
+    },
+    {
+      "name": "Susila, Joko"
+    },
+    {
+      "name": "Sahal, Mochammad"
+    },
+    {
+      "name": "Hidayat, Zulkifli"
+    },
+    {
+      "name": "Gamayanti, Nurlita"
+    }
   ],
-  "keywords": ["reinforcement learning", "autonomous motion planning", "physics-guided task formulation", "trainability", "DDPG", "TD3", "SAC"],
+  "keywords": [
+    "reinforcement learning",
+    "autonomous motion planning",
+    "physics-guided task formulation",
+    "trainability",
+    "DDPG",
+    "TD3",
+    "SAC"
+  ],
   "access_right": "open"
 }
