@@ -1,7 +1,10 @@
 cff-version: 1.2.0
-message: "Cite the version-pinned public archive or its archival DOI when available."
+message: "Cite the archived V16 release using its version-specific Zenodo DOI."
 title: "Reproducibility companion for Physics-Guided Task Formulation as a Trainability Prior for Reinforcement Learning in Autonomous Motion Planning"
 type: software
+doi: "10.5281/zenodo.23131258"
+version: "v16-evidence-2026-10-04"
+date-released: 2026-10-04
 authors:
   - family-names: Bilfaqih
     given-names: Yusuf
